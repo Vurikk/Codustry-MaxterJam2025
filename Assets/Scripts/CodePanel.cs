@@ -23,13 +23,14 @@ public class CodePanel : MonoBehaviour
     public TMP_Text linesText;
     public TMP_Text consoleText;
 
-    private readonly HashSet<string> keywords = new HashSet<string> {
+    //used to prevent multiple variables
+    private HashSet<string> keywords = new HashSet<string> {
         "int", "float", "string", "if", "else", "for", "while", "return",
         "true", "false", "void", "public", "private", "class", "new", "var",
         "data", "GetItemAmount", "drill", "Gather", "print", "Reset",
         "arm", "SetLabel", "SetAmount", "machine",
     };
-    private readonly Dictionary<string, string> keywordColors = new Dictionary<string, string> {
+    private Dictionary<string, string> keywordColors = new Dictionary<string, string> {
         { "int", "#569CD6" }, { "float", "#B5CEA8" }, { "string", "#D69D85" },
         { "if", "#C586C0" }, { "else", "#C586C0" }, { "for", "#C586C0" }, { "while", "#C586C0" },
         { "return", "#C586C0" }, { "true", "#569CD6" }, { "false", "#569CD6" },
