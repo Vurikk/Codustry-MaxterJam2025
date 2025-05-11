@@ -23,7 +23,7 @@ public class CodePanel : MonoBehaviour
     public TMP_Text linesText;
     public TMP_Text consoleText;
 
-    //used to prevent multiple variables
+    
     private HashSet<string> keywords = new HashSet<string> {
         "int", "float", "string", "if", "else", "for", "while", "return",
         "true", "false", "void", "public", "private", "class", "new", "var",
