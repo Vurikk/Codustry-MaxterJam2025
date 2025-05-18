@@ -7,17 +7,20 @@ using TMPro;
 
 public class OrderManager : MonoBehaviour
 {
-    public GameObject orderPrefab;
+    [SerializeField] private bool createOrderOnStart = true; //temporary
+    [SerializeField] private GameObject orderPrefab;
     [Header("Canvas")]
-    public Transform orderPanel;
+    [SerializeField] private Transform orderPanel;
+    [SerializeField] private TextMeshProUGUI statsText;
 
     [Space(10)]
     public List<OrderPrefab> activeOrders = new List<OrderPrefab>();
 
-    public List<OrderData> preCodedOrders = new List<OrderData>();
-    public List<OrderData> randomOrderPool = new List<OrderData>();
+    [SerializeField] private List<OrderData> preCodedOrders = new List<OrderData>();
+    [SerializeField] private List<OrderData> randomOrderPool = new List<OrderData>();
 
     public Action OrderReceived;
+    public Action OrderCompleted;
 
     //stats
     public int ordersCompleted;
@@ -26,13 +29,14 @@ public class OrderManager : MonoBehaviour
     public int totalCubesProduced = 0;
     public int totalCubesRequired = 0;
 
-    public TextMeshProUGUI statsText; //no time :DDDd
 
     private void Start()
     {
-       Invoke("CreateOrder", 10);
+        if (createOrderOnStart)
+            Invoke("CreateOrder", 10);
+
         UdpdateStats();
-       //Invoke("CreateOrder", 60);
+        //Invoke("CreateOrder", 60);
     }
     public void UdpdateStats()
     {
@@ -49,13 +53,15 @@ public class OrderManager : MonoBehaviour
     public void FailOrder()
     {
         ordersFailed++;
-        Invoke("CreateOrder", 10);
+        Invoke("CreateOrder", 1);
         UdpdateStats();
     }
     public void CompeteOrder()
     {
+        OrderCompleted?.Invoke();
         ordersCompleted++;
-        Invoke("CreateOrder", 10);
+        if(createOrderOnStart)
+            Invoke("CreateOrder", 10);
         UdpdateStats();
     }
 
@@ -84,6 +90,7 @@ public class OrderManager : MonoBehaviour
         newOrder.Init(order);
         FindObjectOfType<OrderPlatform>().currentOrder = newOrder; 
         OrderReceived?.Invoke();
+        FindObjectOfType<CodePanel>().currentOrder = newOrder;
     }
 
 

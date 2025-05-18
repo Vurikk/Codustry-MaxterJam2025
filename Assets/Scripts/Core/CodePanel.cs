@@ -7,9 +7,10 @@ using System;
 
 public class CodePanel : MonoBehaviour
 {
+    public OrderPrefab currentOrder;
     private Building building;
     public CameraMovement cameraMovement;
-    private bool isOpen = false;
+    public bool isOpen = false;
     public GameObject canvas;
     public GameObject disableWhenCodeObj;
 
@@ -23,13 +24,13 @@ public class CodePanel : MonoBehaviour
     public TMP_Text linesText;
     public TMP_Text consoleText;
 
-    
     private HashSet<string> keywords = new HashSet<string> {
         "int", "float", "string", "if", "else", "for", "while", "return",
         "true", "false", "void", "public", "private", "class", "new", "var",
         "data", "GetItemAmount", "drill", "Gather", "print", "Reset",
-        "arm", "SetLabel", "SetAmount", "machine",
+        "arm", "SetLabel", "SetAmount", "machine"
     };
+
     private Dictionary<string, string> keywordColors = new Dictionary<string, string> {
         { "int", "#569CD6" }, { "float", "#B5CEA8" }, { "string", "#D69D85" },
         { "if", "#C586C0" }, { "else", "#C586C0" }, { "for", "#C586C0" }, { "while", "#C586C0" },
@@ -53,6 +54,9 @@ public class CodePanel : MonoBehaviour
 
     public void OpenCode(string baseCode, string userCode)
     {
+        if (isOpen) // prevent some annoying bugs
+            return;
+
         cameraMovement.canMove = false;
         baseHeader = baseCode;
         inputField.text = userCode;
@@ -461,7 +465,7 @@ public class CodePanel : MonoBehaviour
             }
             // future functions
         }
-        if (consoleText.text == String.Empty)
+        if (string.IsNullOrEmpty(consoleText.text))
             consoleText.text = "Executed successfully!";
 
         // call the on order as an execute
@@ -474,13 +478,8 @@ public class CodePanel : MonoBehaviour
 
     private int GetItemAmountForItem(string itemId)
     {
-        disableWhenCodeObj.SetActive(true);
-        OrderPrefab prefab = FindObjectOfType<OrderPrefab>(); // find order
-        if(prefab != null) // BUG: found only after jam. the prefab is disabled when i try to set it
-        {
-            return prefab.GetItemAmount(itemId);
-        }
-        disableWhenCodeObj.SetActive(false);
+        if(currentOrder != null) 
+            return currentOrder.GetItemAmount(itemId);
 
         return 0;
     }

@@ -46,8 +46,11 @@ public class LabelingMachine : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             CodePanel panel = FindObjectOfType<CodePanel>();
-            panel.OpenCode(baseCode, userCode);
-            panel.currentLabelingMachine = this;
+            if (panel.isOpen == false)
+            {
+                panel.OpenCode(baseCode, userCode);
+                panel.currentLabelingMachine = this;
+            }
         }
     }
     private void OnMouseExit()

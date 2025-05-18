@@ -21,11 +21,13 @@ public class RobotArm : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        if (isMovingItem) return;
 
-        if(other.TryGetComponent(out ConveyorItem item))
+        if (isMovingItem || ItemsRemaining <= 0)
+            return;
+
+        if (other.TryGetComponent(out ConveyorItem item))
         {
-            if (item.label == requiredLabel && !isMovingItem && ItemsRemaining > 0)
+            if (item.label == requiredLabel || item.itemID == requiredLabel)
             {
                 StartCoroutine(MoveItem(item));
                 ItemsRemaining--;

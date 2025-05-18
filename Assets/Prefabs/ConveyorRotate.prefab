@@ -83,10 +83,11 @@ MonoBehaviour:
   currentItem: {fileID: 0}
   nextBelt: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
-  speed: 0.7
+  speed: 1
   itemPosOffset: {x: 0, y: 1, z: 0}
   inputCheckerBack: {fileID: 7277821646977223349}
   inputCheckerFront: {fileID: 9119441489895980547}
+  beltExitFactor: 0.15
 --- !u!65 &4335272976547857628
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -6933,11 +6933,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 867fe927ff552d3459093cea5619a11b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingHolder: {fileID: 1851929011}
   CanBuild: 1
   buildPrefabs:
   - {fileID: 7407739389705079324, guid: 9a2ea3c8d62d1434aa92fbf453cbc8b4, type: 3}
   - {fileID: 2868206076453454402, guid: 9739e1082e52d9f4c9e953b4a799f6eb, type: 3}
   - {fileID: 2814548634211853297, guid: d51e7879a00ca0f4c9dbf69e432cf7c0, type: 3}
+  - {fileID: 7117981313190014337, guid: a4489c6d80cf76047811c18cbb560224, type: 3}
   - {fileID: 7948812630824263877, guid: 9055353956f422947bc7769d060427f5, type: 3}
   - {fileID: 2589331488188822276, guid: 74125f34ee63e5047b35da25828a00b1, type: 3}
   currentPrefab: 0
@@ -10440,6 +10442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32a5c19ed4573a41846e26c1134c654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentOrder: {fileID: 0}
   cameraMovement: {fileID: 330585548}
   canvas: {fileID: 469284889}
   disableWhenCodeObj: {fileID: 5034300}
@@ -24953,6 +24956,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813706471}
   m_Mesh: {fileID: 7807538432633192378, guid: 318419eea8169c947933e05de278d2b7, type: 3}
+--- !u!1 &1851929010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1851929011}
+  m_Layer: 0
+  m_Name: BuildingHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1851929011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851929010}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.374287, y: 0.85560745, z: 1.2877451}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1889510391
 GameObject:
   m_ObjectHideFlags: 0
@@ -25693,9 +25727,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719824f74073b6a4eb9de6b40eceaae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  createOrderOnStart: 1
   orderPrefab: {fileID: 115010915764786310, guid: 41482e5fd1803f24e923585361ea239f,
     type: 3}
   orderPanel: {fileID: 1805203094}
+  statsText: {fileID: 224203031}
   activeOrders: []
   preCodedOrders:
   - id: 1
@@ -25792,7 +25828,6 @@ MonoBehaviour:
   lastOrderID: 0
   totalCubesProduced: 0
   totalCubesRequired: 0
-  statsText: {fileID: 224203031}
 --- !u!4 &2036984184
 Transform:
   m_ObjectHideFlags: 0
@@ -26430,3 +26465,4 @@ SceneRoots:
   - {fileID: 153592429}
   - {fileID: 2073796405}
   - {fileID: 106323953}
+  - {fileID: 1851929011}

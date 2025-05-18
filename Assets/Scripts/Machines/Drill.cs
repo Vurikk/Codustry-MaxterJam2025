@@ -12,7 +12,7 @@ public class Drill : MonoBehaviour
     public ConveyorBelt startingBelt;
     public Transform spawnPoint;
 
-    private float timer = 5f;
+    private float timer = 2f;
 
     public TextMeshProUGUI amountText;
     public GameObject interactText;
@@ -39,7 +39,7 @@ public class Drill : MonoBehaviour
         if (timer <= 0f)
         {
             SpawnItem();
-            timer = 5f;
+            timer = 2f;
             ItemsToGather--;
             amountText.text = ItemsToGather.ToString();
         }
@@ -82,7 +82,7 @@ public class Drill : MonoBehaviour
     {
         gatheringList.Clear();
         ItemsToGather = 0;
-        timer = 5f;
+        timer = 2f;
         amountText.text = ItemsToGather.ToString();
     }
 
@@ -95,8 +95,11 @@ public class Drill : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             CodePanel panel = FindObjectOfType<CodePanel>();
-            panel.OpenCode(baseCode, userCode);
-            panel.currentDrill = this;
+            if (panel.isOpen == false)
+            {
+                panel.OpenCode(baseCode, userCode);
+                panel.currentDrill = this;
+            }
         }
     }
     private void OnMouseExit()

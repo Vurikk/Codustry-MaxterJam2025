@@ -22,8 +22,11 @@ public class RobotArmCodeActivator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             CodePanel panel = FindObjectOfType<CodePanel>();
-            panel.OpenCode(baseCode, userCode);
-            panel.currentRobotArm = this;
+            if (panel.isOpen == false)
+            {
+                panel.OpenCode(baseCode, userCode);
+                panel.currentRobotArm = this;
+            }
         }
     }
     private void OnMouseExit()

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
+    [SerializeField] private Transform buildingHolder;
     public bool CanBuild = true;
     public GameObject[] buildPrefabs;
     public int currentPrefab;
@@ -24,7 +25,7 @@ public class Building : MonoBehaviour
     [SerializeField] private GameObject destructionModeText;
     [SerializeField] private GameObject buildingModeText;
 
-    void StartBuilding()
+    private void StartBuilding()
     {
         isBuilding = true;
         if (currentPrefab < 0)
@@ -47,7 +48,7 @@ public class Building : MonoBehaviour
         buildingModeText.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
         if (!CanBuild)
             return;
@@ -114,12 +115,19 @@ public class Building : MonoBehaviour
 
         if (canBuild && Input.GetMouseButtonDown(0))
         {
-            GameObject newObj = Instantiate(buildPrefabs[currentPrefab], previewInstance.transform.position, currentRotation);
+            GameObject newObj = Instantiate(buildPrefabs[currentPrefab], previewInstance.transform.position, currentRotation, buildingHolder);
             TryAutoConnectConveyors(newObj);
         }
 
     }
-    void TryAutoConnectConveyors(GameObject obj)
+    public void DestroyAllPlayerBuilding()
+    {
+        foreach (Transform child in buildingHolder)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    private void TryAutoConnectConveyors(GameObject obj)
     {
         ConveyorBelt newBelt = obj.GetComponent<ConveyorBelt>();
         if (newBelt == null) return;
@@ -160,7 +168,7 @@ public class Building : MonoBehaviour
             }
         }
     }
-    void HandleRotation()
+    private void HandleRotation()
     {
         if (previewInstance == null) return;
 
@@ -171,7 +179,7 @@ public class Building : MonoBehaviour
         }
     }
 
-    void UpdatePreviewPosition()
+    private void UpdatePreviewPosition()
     {
         if (previewInstance == null) return;
 
@@ -188,7 +196,7 @@ public class Building : MonoBehaviour
         }
     }
 
-    void CheckBuildValidity()
+    private void CheckBuildValidity()
     {
         if (previewInstance == null) return;
 
@@ -208,7 +216,7 @@ public class Building : MonoBehaviour
     /// <summary>
     /// This part affects for destruction functions
     /// </summary>
-    void HandleDestructionHover()
+    private void HandleDestructionHover()
     {
         // raycast to mouse -> check if target has belt -> apply
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

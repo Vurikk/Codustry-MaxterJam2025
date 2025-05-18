@@ -11,6 +11,7 @@ public class ConveyorBelt : MonoBehaviour
     public Vector3 itemPosOffset = new Vector3(0, 0.5f, 0);
     public Transform inputCheckerBack;
     public Transform inputCheckerFront;
+    public float beltExitFactor = 1f; // and 0.5f on rotated
 
     void Start()
     {
@@ -19,6 +20,6 @@ public class ConveyorBelt : MonoBehaviour
 
     public Vector3 GetExitPosition()
     {
-        return transform.position + moveDirection.normalized * 0.5f; 
+        return transform.position + moveDirection.normalized * 0.5f * beltExitFactor;
     }
 }
