@@ -560,6 +560,7 @@ MonoBehaviour:
   itemPosOffset: {x: 0, y: 1, z: 0}
   inputCheckerBack: {fileID: 1659948280582629606}
   inputCheckerFront: {fileID: 5013911427774205804}
+  beltExitFactor: 1
 --- !u!65 &4862757604054832564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1103,6 +1104,7 @@ MonoBehaviour:
   itemPosOffset: {x: 0, y: 1, z: 0}
   inputCheckerBack: {fileID: 6848202994461870706}
   inputCheckerFront: {fileID: 1997955726802541114}
+  beltExitFactor: 1
 --- !u!65 &3524394551946407779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2155,8 +2157,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 5.9013343, z: 1}
-  m_Center: {x: 0, y: 2.450666, z: 0}
+  m_Size: {x: 1, y: 3.2630951, z: 1}
+  m_Center: {x: 0, y: 1.131544, z: 0}
 --- !u!114 &4613088517562911804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2189,6 +2191,7 @@ MonoBehaviour:
   itemPosOffset: {x: 0, y: 0.5, z: 0}
   inputCheckerBack: {fileID: 0}
   inputCheckerFront: {fileID: 0}
+  beltExitFactor: 1
 --- !u!54 &6576617266460018039
 Rigidbody:
   m_ObjectHideFlags: 0

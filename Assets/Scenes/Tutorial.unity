@@ -3103,6 +3103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentOrder: {fileID: 0}
   cameraMovement: {fileID: 330585548}
+  isOpen: 0
   canvas: {fileID: 469284889}
   disableWhenCodeObj: {fileID: 5034300}
   currentDrill: {fileID: 0}
@@ -6759,6 +6760,7 @@ MonoBehaviour:
   itemPosOffset: {x: 0, y: 0.5, z: 0}
   inputCheckerBack: {fileID: 0}
   inputCheckerFront: {fileID: 0}
+  beltExitFactor: 1
 --- !u!114 &2061448767
 MonoBehaviour:
   m_ObjectHideFlags: 0
